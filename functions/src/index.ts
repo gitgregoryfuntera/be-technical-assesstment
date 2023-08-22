@@ -2,6 +2,7 @@ import * as fs from "firebase-admin";
 import * as logger from "firebase-functions/logger";
 import * as express from "express";
 import * as functions from "firebase-functions";
+import cors = require("cors");
 import serviceAccount = require("./sdk.json");
 
 fs.initializeApp({
@@ -9,6 +10,9 @@ fs.initializeApp({
 });
 
 const app = express();
+
+// Automatically allow cross-origin requests
+app.use(cors({origin: true}));
 
 const db = fs.firestore();
 
